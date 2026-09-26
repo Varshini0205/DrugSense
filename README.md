@@ -1,96 +1,118 @@
-DrugSense
-Patient Drug Review Analysis & Medical Condition Classification System
+# DrugSense
 
-DrugSense is an NLP and machine-learning web application that analyzes patient drug reviews and extracts structured information such as medications, symptoms, side effects, treatment response, sentiment, temporal information, and causal relationships.
+## Patient Drug Review Analysis & Medical Condition Classification System
 
-The system also uses a TF-IDF + Linear SVM model to classify the medical condition associated with a patient review.
+DrugSense is an **NLP + Machine Learning web application** that analyzes patient drug reviews, extracts structured information from natural language, and predicts the associated medical condition using a machine-learning classification model.
 
-Medical Disclaimer: DrugSense is an educational and research-oriented system. Its predictions and extracted information are based on the underlying dataset and NLP/ML models and should not be interpreted as a medical diagnosis, clinical recommendation, or medically verified causal relationship.
+The system combines a modular **NLP pipeline**, **machine-learning classification**, **Flask backend**, and **interactive web dashboard** into one end-to-end application.
 
-✨ Features
-🧠 Advanced NLP Pipeline
+> **Medical Disclaimer:** DrugSense is an educational and research-oriented system. Its outputs should not be interpreted as a medical diagnosis, clinical recommendation, or medically verified causal relationship.
 
-DrugSense processes patient reviews through a modular NLP pipeline containing:
+---
 
-Text preprocessing
-Sentence analysis
-Drug, condition, and symptom extraction
-Entity normalization
-Negation detection
-Uncertainty detection
-Medication dosage extraction
-Medication frequency extraction
-Medication duration extraction
-Severity detection
-Relation extraction
-Causality detection
-Side-effect detection
-Coreference resolution
-Experiencer detection
-Discourse-role classification
-Sentiment analysis
-Aspect-based sentiment analysis
-Treatment-response detection
-Comparative change detection
-Event extraction
-Temporal information extraction
-Timeline construction
-Semantic similarity
+## ✨ Features
 
-All components are orchestrated through a central NLP pipeline.
+### 🧠 Advanced NLP Pipeline
 
-🤖 Machine Learning
+DrugSense includes a modular NLP pipeline with **23 components**:
 
-DrugSense uses machine learning to classify the medical condition associated with a patient review.
+- Text preprocessing
+- Sentence analysis
+- Drug, condition, and symptom extraction
+- Entity normalization
+- Negation detection
+- Uncertainty detection
+- Medication dosage extraction
+- Medication frequency extraction
+- Medication duration extraction
+- Severity detection
+- Relation extraction
+- Causality detection
+- Side-effect detection
+- Coreference resolution
+- Experiencer detection
+- Discourse analysis
+- Sentiment analysis
+- Aspect-based sentiment analysis
+- Treatment-response detection
+- Comparative change detection
+- Event extraction
+- Temporal information extraction
+- Timeline construction
+- Semantic similarity
 
-Model Pipeline
+All components are integrated through a central NLP pipeline.
 
-Patient Review → Text Preprocessing → TF-IDF → Linear SVM → Predicted Condition
+---
 
-Several approaches were evaluated during development, including:
+## 🤖 Machine Learning
 
-Logistic Regression
-Linear SVM
-TF-IDF unigram and bigram features
-Model comparison
-Condition-level error analysis
-Confusion analysis
-Class-imbalance analysis
-Final Memory-Safe Model
+DrugSense uses machine learning to classify the medical condition associated with a patient drug review.
 
-The final practical model uses:
+### Classification Pipeline
 
-Algorithm: Linear Support Vector Machine
-Feature representation: TF-IDF
-TF-IDF features: 100,000
-Number of classes: 791
-Validation Results
-Metric	Score
-Accuracy	76.76%
-Macro F1	50.90%
-Weighted F1	76.94%
+```text
+Patient Review
+      ↓
+Text Preprocessing
+      ↓
+TF-IDF Feature Extraction
+      ↓
+Linear Support Vector Machine
+      ↓
+Predicted Medical Condition
+```
 
-These results describe performance on the project's validation data and should not be interpreted as clinical performance.
+The project includes experiments with:
 
-🌐 Web Application
+- Logistic Regression
+- Linear SVM
+- TF-IDF unigram and bigram features
+- Model comparison
+- Condition-level error analysis
+- Confusion analysis
+- Class-imbalance analysis
+
+### Final Memory-Safe Model
+
+| Property | Value |
+|---|---|
+| Algorithm | Linear SVM |
+| Feature Representation | TF-IDF |
+| TF-IDF Features | 100,000 |
+| Number of Classes | 791 |
+| Accuracy | **76.76%** |
+| Macro F1 | **50.90%** |
+| Weighted F1 | **76.94%** |
+
+> These metrics describe performance on the project's validation data and do not represent clinical performance.
+
+---
+
+## 🌐 Web Application
 
 DrugSense provides an interactive Flask-based dashboard for analyzing patient reviews.
 
-The application includes:
+### Dashboard Features
 
-Review analysis workspace
-NLP analysis
-Medical condition prediction
-Dataset analytics
-Model analytics
-Extracted entities
-Medication details
-Side-effect information
-Treatment response
-Sentiment analysis
-Temporal information
-Causal relationships
-📁 Project Structure
+- **Review Analysis**
+- **NLP Analysis**
+- **Condition Prediction**
+- **Dataset Analytics**
+- **Model Analytics**
+- Medication information
+- Symptoms and side effects
+- Treatment response
+- Sentiment analysis
+- Temporal information
+- Causal relationships
+- Extracted entities
+
+---
+
+## 📁 Project Structure
+
+```text
 DrugSense/
 │
 ├── nlp/
@@ -138,176 +160,275 @@ DrugSense/
 ├── run_tests.py
 ├── requirements.txt
 └── .gitignore
+```
 
-Large datasets, trained models, archives, and the Python virtual environment are intentionally excluded from the Git repository.
+---
 
-🚀 Installation
-1. Clone the repository
+## 🚀 Installation
 
-Clone the DrugSense repository from GitHub and open the project directory.
+### 1. Clone the Repository
 
-2. Create a virtual environment
+```bash
+git clone https://github.com/Varshini0205/DrugSense.git
+cd DrugSense
+```
 
-Create a Python virtual environment named venv inside the project.
+### 2. Create a Virtual Environment
 
-3. Activate the virtual environment
+```bash
+python -m venv venv
+```
 
-On Windows PowerShell, activate the newly created environment using the standard venv activation command.
+### 3. Activate the Environment
 
-4. Install dependencies
+**Windows PowerShell:**
 
-Install all required Python packages using the project's requirements.txt file.
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
-▶️ Running DrugSense
+### 4. Install Dependencies
 
-Start the Flask application using app.py.
+```bash
+pip install -r requirements.txt
+```
 
-Once the server starts, open the local Flask address shown in the terminal, typically:
+---
 
-http://127.0.0.1:5000
+## ▶️ Run the Application
 
-The DrugSense dashboard will then be available in your browser.
+Start the Flask application:
 
-🔍 Example
-Example Patient Review
+```bash
+python app.py
+```
 
-I started taking metformin 500 mg twice daily for my diabetes three weeks ago. After two days, the medication caused severe nausea and moderate dizziness, but it helped improve my diabetes. I do not have headaches now. I think the metformin may be responsible for the side effects, although my condition has improved.
+Open the application in your browser:
 
-Example Extracted Information
+**http://127.0.0.1:5000**
 
-Medication
+---
 
-Metformin
+## 🔍 Example
 
-Dosage
+### Input Review
 
-500 mg
+> I started taking metformin 500 mg twice daily for my diabetes three weeks ago. After two days, the medication caused severe nausea and moderate dizziness, but it helped improve my diabetes.
 
-Frequency
+### Extracted Information
 
-Twice daily
+| Category | Result |
+|---|---|
+| Medication | Metformin |
+| Dosage | 500 mg |
+| Frequency | Twice daily |
+| Duration | Three weeks |
+| Condition | Diabetes |
+| Symptoms | Nausea, Dizziness |
+| Severity | Severe, Moderate |
+| Treatment Response | Improved |
+| Relation | Metformin → caused → Nausea |
 
-Duration
+The NLP pipeline converts unstructured patient text into structured information that can be displayed by the application.
 
-Three weeks
+---
 
-Condition
+## 📊 Model Comparison
 
-Diabetes
+| Model | Accuracy | Macro F1 | Weighted F1 |
+|---|---:|---:|---:|
+| Logistic Regression | 63.60% | 9.07% | 57.94% |
+| Linear SVM | 81.29% | 56.10% | 80.15% |
+| Cleaned Linear SVM | 81.73% | 60.08% | 80.83% |
+| Final Memory-Safe Linear SVM | **76.76%** | **50.90%** | **76.94%** |
 
-Symptoms
+The final memory-safe model uses fewer TF-IDF features to make prediction more practical on ordinary hardware.
 
-Nausea
-Dizziness
-Headaches
+---
 
-Severity
+## 🧪 Testing
 
-Severe
-Moderate
+DrugSense includes tests covering:
 
-Treatment Response
+- NLP components
+- NLP pipeline integration
+- Machine-learning prediction
+- ML failure handling
+- Flask API validation
+- Application error handling
+- Multiple-review processing
+- Dataset statistics
+- Model statistics
+- Partial NLP component failures
 
-Improved
+### Test Result
 
-Causal Relationship
+**174 tests passed**
 
-Metformin → caused → nausea
+Run the complete test suite with:
 
-Negation
+```bash
+pytest -q
+```
 
-No headaches
+---
 
-Uncertainty
+## 🔬 Data & ML Workflow
 
-May be responsible
+```text
+Raw Dataset
+      ↓
+Data Cleaning
+      ↓
+Duplicate & Missing-Value Checks
+      ↓
+Review Leakage Analysis
+      ↓
+Conflicting-Label Analysis
+      ↓
+Text Preparation
+      ↓
+Train / Validation Split
+      ↓
+TF-IDF
+      ↓
+Model Training
+      ↓
+Model Evaluation
+```
 
-The ML component additionally produces a condition prediction based on the trained classification model.
+The project specifically checks for **review-text leakage and conflicting labels** before model training.
 
-🔬 Data & Machine Learning Methodology
+This helps prevent duplicated or conflicting review information from incorrectly influencing model evaluation.
 
-The project uses a patient drug-review dataset containing medication reviews and associated medical conditions.
+---
 
-The preprocessing workflow is:
+## 🧹 Data Quality & Leakage Handling
 
-Raw Dataset → Data Cleaning → Duplicate & Missing-Value Checks → Review Leakage Analysis → Conflicting-Label Analysis → Text Preparation → Train/Validation Split → TF-IDF → Model Training → Evaluation
+The project includes dedicated preprocessing and validation scripts for:
 
-Particular attention was given to data leakage caused by duplicate review text appearing across dataset splits.
+- Missing-value handling
+- Duplicate detection
+- Review-text overlap analysis
+- Conflicting-label detection
+- Condition-name quality checks
+- Text cleaning
+- Dataset validation
+- Train/validation splitting
 
-The project also examines class imbalance and model performance across conditions with different numbers of training examples.
+The ML workflow avoids fitting the TF-IDF vectorizer on the validation data.
 
-📊 Model Evaluation
+---
 
-Several models were evaluated during development.
+## 🔒 Model & Dataset Files
 
-Model	Accuracy	Macro F1	Weighted F1
-Logistic Regression	63.60%	9.07%	57.94%
-Linear SVM	81.29%	56.10%	80.15%
-Cleaned Linear SVM	81.73%	60.08%	80.83%
-Final Memory-Safe Linear SVM	76.76%	50.90%	76.94%
+Large files are intentionally excluded from GitHub.
 
-The final memory-safe model uses fewer TF-IDF features to make prediction practical on ordinary hardware.
+Excluded files include:
 
-🧪 Testing
+- Trained ML models
+- Dataset CSV files
+- Archived experiments
+- Python virtual environment
+- Python cache files
 
-DrugSense contains unit, NLP-component, ML, Flask backend, integration, and error-handling tests.
+The final trained SVM model is approximately **585 MB**, while an earlier experimental model was several GB.
 
-The completed project test suite contains 174 passing tests.
+Therefore, the repository contains the:
 
-Testing covers:
+- NLP implementation
+- ML training code
+- ML evaluation code
+- ML prediction code
+- Flask application
+- Frontend
+- Tests
 
-NLP components
-NLP pipeline integration
-ML prediction
-ML failure handling
-Flask API validation
-Application errors
-Multiple-review processing
-Dataset and model statistics
-Partial NLP component failures
-🛡️ Medical Safety
+Large trained model artifacts and datasets are excluded through `.gitignore`.
 
-DrugSense is designed as a research and educational NLP/ML application.
+---
+
+## 🛡️ Medical Safety
+
+DrugSense is designed as a **research and educational NLP/ML application**.
 
 The system:
 
-Does not diagnose patients.
-Does not replace a healthcare professional.
-Does not provide treatment recommendations.
-Does not establish medically verified causality.
-Does not claim clinical effectiveness.
+- Does **not** diagnose patients.
+- Does **not** provide treatment recommendations.
+- Does **not** replace medical professionals.
+- Does **not** establish medically verified causality.
+- Does **not** claim clinical effectiveness.
+- Reports information detected from the review text and underlying dataset.
 
-For example, an extracted relationship such as:
+For example:
 
+```text
 metformin → caused → nausea
+```
 
-represents a relationship reported or detected in the review text. It should not be interpreted as medically verified causation.
+represents a relationship detected or reported in the review text.
 
-🔒 Data & Model Files
+It should **not** be interpreted as medically verified causation.
 
-Large datasets and trained model artifacts are intentionally excluded from the GitHub repository.
+---
 
-The final trained SVM model is approximately 585 MB, while an earlier experimental model was several GB.
+## 🛠️ Technology Stack
 
-The repository therefore contains the NLP, ML, training, evaluation, prediction, and application code, while large datasets and model artifacts are excluded through .gitignore.
+| Technology | Purpose |
+|---|---|
+| Python | Core development |
+| Flask | Web backend |
+| scikit-learn | Machine Learning |
+| Pandas | Data processing |
+| NumPy | Numerical processing |
+| SciPy | Scientific computing |
+| Joblib | Model serialization |
+| Matplotlib | Analysis and visualization |
+| pytest | Automated testing |
+| HTML | Frontend structure |
+| CSS | Frontend styling |
+| JavaScript | Frontend interaction |
 
-🧰 Technology Stack
-Python
-Flask
-Pandas
-NumPy
-scikit-learn
-SciPy
-Joblib
-Matplotlib
-pytest
-HTML
-CSS
-JavaScript
-👩‍💻 Author
+---
 
-Varshini
+## 📌 Project Highlights
 
-GitHub: Varshini0205
+- **23 modular NLP components**
+- **791 medical-condition classes**
+- **100,000 TF-IDF features in the final model**
+- **174 automated tests**
+- Leakage and data-quality analysis
+- Condition-level model evaluation
+- Flask REST API
+- Interactive analytics dashboard
+- Modular and testable NLP architecture
 
-Project Repository: DrugSense
+---
+
+## 👩‍💻 Author
+
+**Varshini**
+
+### GitHub
+
+https://github.com/Varshini0205
+
+### Project Repository
+
+https://github.com/Varshini0205/DrugSense
+
+---
+
+## 📌 Project Status
+
+### DrugSense — Core Development Complete
+
+DrugSense currently includes the complete:
+
+**NLP Pipeline → ML Classification → Flask Backend → Interactive Dashboard → Testing Framework**
+
+The project is intended for **research, educational, and portfolio purposes**.
+
+---
+```
