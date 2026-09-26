@@ -1,0 +1,31 @@
+﻿# Python
+venv/
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Environment / secrets
+.env
+.env.*
+
+# Logs
+*.log
+
+# Archives / old experiments
+archive/
+
+# Large trained ML artifacts
+models/*.joblib
+models/*.pkl
+models/*.pickle
+
+# Dataset files
+data/*.csv
+data/*.tmp
+data/*.bak
+
+# OS files
+.DS_Store
+Thumbs.db

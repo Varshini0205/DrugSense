@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DrugSense - Analytics</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">DS</div>
+
+            <div>
+                <div class="brand-name">DrugSense</div>
+                <div class="brand-subtitle">NLP INTELLIGENCE</div>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>Workspace</span>
+            </a>
+
+            <a href="/" class="nav-item">
+                <span class="nav-icon">◇</span>
+                <span>NLP Analysis</span>
+            </a>
+
+            <a href="/" class="nav-item">
+                <span class="nav-icon">◎</span>
+                <span>Predictions</span>
+            </a>
+
+            <a href="/analytics" class="nav-item active">
+                <span class="nav-icon">◈</span>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>All services ready</small>
+                </div>
+
+            </div>
+
+            <div class="sidebar-version">
+                DRUGSENSE v1.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="topbar-eyebrow">
+                    PATIENT REVIEW INTELLIGENCE
+                </p>
+
+                <h1>
+                    Analytics Overview
+                </h1>
+
+                <p class="topbar-description">
+                    Dataset statistics and machine-learning evaluation results.
+                </p>
+            </div>
+
+            <div class="engine-status">
+                <span class="status-dot"></span>
+                Analytics Engine Ready
+            </div>
+
+        </header>
+
+
+        <section class="analytics-content">
+
+            <!-- SUMMARY -->
+            <div class="analytics-header">
+
+                <div>
+                    <p class="section-eyebrow">
+                        PROJECT ANALYTICS
+                    </p>
+
+                    <h2>
+                        Model & Dataset Overview
+                    </h2>
+
+                    <p>
+                        A structured view of the data and model evaluation used by DrugSense.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+            <div class="analytics-stat-grid">
+
+                <div class="analytics-stat-card">
+
+                    <span>
+                        TRAINING REVIEWS
+                    </span>
+
+                    <strong id="statTrainingReviews">
+                        —
+                    </strong>
+
+                    <small>
+                        Reviews used for model development
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-stat-card">
+
+                    <span>
+                        TEST REVIEWS
+                    </span>
+
+                    <strong id="statTestReviews">
+                        —
+                    </strong>
+
+                    <small>
+                        Final held-out review set
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-stat-card">
+
+                    <span>
+                        MODEL CONDITIONS
+                    </span>
+
+                    <strong id="statConditions">
+                        —
+                    </strong>
+
+                    <small>
+                        Classification classes
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-stat-card">
+
+                    <span>
+                        TF-IDF FEATURES
+                    </span>
+
+                    <strong id="statFeatures">
+                        —
+                    </strong>
+
+                    <small>
+                        Text representation features
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODEL + NLP -->
+            <div class="analytics-two-column">
+
+
+                <!-- MODEL PERFORMANCE -->
+                <div class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+                            <p class="section-eyebrow">
+                                FINAL MODEL
+                            </p>
+
+                            <h3 id="statModelName">
+                                Loading...
+                            </h3>
+                        </div>
+
+                        <span class="analytics-badge">
+                            VALIDATED
+                        </span>
+
+                    </div>
+
+
+                    <div class="analytics-metrics">
+
+                        <div class="analytics-metric">
+
+                            <div>
+                                <strong>
+                                    Accuracy
+                                </strong>
+
+                                <span>
+                                    Overall validation accuracy
+                                </span>
+                            </div>
+
+                            <b id="metricAccuracy">
+                                —
+                            </b>
+
+                        </div>
+
+
+                        <div class="analytics-metric">
+
+                            <div>
+                                <strong>
+                                    Macro F1
+                                </strong>
+
+                                <span>
+                                    Average performance across conditions
+                                </span>
+                            </div>
+
+                            <b id="metricMacroF1">
+                                —
+                            </b>
+
+                        </div>
+
+
+                        <div class="analytics-metric">
+
+                            <div>
+                                <strong>
+                                    Weighted F1
+                                </strong>
+
+                                <span>
+                                    Frequency-weighted performance
+                                </span>
+                            </div>
+
+                            <b id="metricWeightedF1">
+                                —
+                            </b>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NLP ENGINE -->
+                <div class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+                            <p class="section-eyebrow">
+                                NLP ENGINE
+                            </p>
+
+                            <h3>
+                                Pipeline Components
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="nlp-module-count">
+
+                        <strong id="statNlpModules">
+                            —
+                        </strong>
+
+                        <span>
+                            implemented NLP modules
+                        </span>
+
+                    </div>
+
+
+                    <div class="nlp-module-tags">
+
+                        <span>Preprocessing</span>
+                        <span>Entities</span>
+                        <span>Negation</span>
+                        <span>Uncertainty</span>
+                        <span>Temporal</span>
+                        <span>Relations</span>
+                        <span>Causality</span>
+                        <span>Side Effects</span>
+                        <span>Sentiment</span>
+                        <span>Timeline</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODEL COMPARISON -->
+            <div class="analytics-card comparison-card">
+
+                <div class="analytics-card-header">
+
+                    <div>
+                        <p class="section-eyebrow">
+                            MODEL COMPARISON
+                        </p>
+
+                        <h3>
+                            Validation Performance
+                        </h3>
+                    </div>
+
+                    <span class="comparison-note">
+                        Accuracy
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="modelComparison"
+                    class="model-comparison"
+                >
+                    <div class="analytics-loading">
+                        Loading model comparison...
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SAFETY NOTE -->
+            <div class="analytics-note">
+
+                <span class="note-icon">i</span>
+
+                <div>
+                    <strong>
+                        Academic model evaluation
+                    </strong>
+
+                    <p>
+                        These metrics describe model performance on the project dataset.
+                        They are not clinical effectiveness measures or medical probabilities.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="dashboard-footer">
+
+            <span>
+                DrugSense · Patient Drug Review Intelligence
+            </span>
+
+            <span>
+                NLP + Machine Learning
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script>
+
+async function loadAnalytics() {
+
+    const comparison =
+        document.getElementById("modelComparison");
+
+    try {
+
+        const response =
+            await fetch("/api/stats");
+
+        if (!response.ok) {
+            throw new Error("Analytics request failed.");
+        }
+
+        const data =
+            await response.json();
+
+
+        document.getElementById(
+            "statTrainingReviews"
+        ).textContent =
+            data.dataset.training_reviews.toLocaleString();
+
+
+        document.getElementById(
+            "statTestReviews"
+        ).textContent =
+            data.dataset.test_reviews.toLocaleString();
+
+
+        document.getElementById(
+            "statConditions"
+        ).textContent =
+            data.dataset.training_conditions.toLocaleString();
+
+
+        document.getElementById(
+            "statFeatures"
+        ).textContent =
+            data.dataset.tfidf_features.toLocaleString();
+
+
+        document.getElementById(
+            "statModelName"
+        ).textContent =
+            data.model.name;
+
+
+        document.getElementById(
+            "metricAccuracy"
+        ).textContent =
+            formatPercent(data.model.accuracy);
+
+
+        document.getElementById(
+            "metricMacroF1"
+        ).textContent =
+            formatPercent(data.model.macro_f1);
+
+
+        document.getElementById(
+            "metricWeightedF1"
+        ).textContent =
+            formatPercent(data.model.weighted_f1);
+
+
+        document.getElementById(
+            "statNlpModules"
+        ).textContent =
+            data.nlp_modules;
+
+
+        comparison.innerHTML = "";
+
+
+        data.comparison.forEach((model) => {
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "model-comparison-row";
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "model-name";
+
+            name.textContent =
+                model.name;
+
+
+            const bar =
+                document.createElement("div");
+
+            bar.className =
+                "model-bar";
+
+
+            const fill =
+                document.createElement("div");
+
+            fill.className =
+                "model-bar-fill";
+
+            fill.style.width =
+                `${model.accuracy * 100}%`;
+
+
+            bar.appendChild(fill);
+
+
+            const score =
+                document.createElement("strong");
+
+            score.className =
+                "model-score";
+
+            score.textContent =
+                formatPercent(model.accuracy);
+
+
+            item.appendChild(name);
+            item.appendChild(bar);
+            item.appendChild(score);
+
+            comparison.appendChild(item);
+
+        });
+
+
+    } catch (error) {
+
+        comparison.innerHTML = `
+            <div class="analytics-error">
+                Analytics data could not be loaded.
+            </div>
+        `;
+
+    }
+
+}
+
+
+function formatPercent(value) {
+
+    return `${(value * 100).toFixed(2)}%`;
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAnalytics
+);
+
+</script>
+
+</body>
+</html>

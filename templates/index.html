@@ -1,0 +1,992 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DrugSense — Patient Drug Review Intelligence</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                <span>DS</span>
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    DrugSense
+                </div>
+
+                <div class="brand-subtitle">
+                    NLP INTELLIGENCE
+                </div>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button
+                class="nav-item active"
+                data-section="workspace"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Workspace</span>
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="nlp"
+            >
+                <span class="nav-icon">◇</span>
+                <span>NLP Analysis</span>
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="prediction"
+            >
+                <span class="nav-icon">◎</span>
+                <span>ML Predictions</span>
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="dataset"
+            >
+                <span class="nav-icon">▦</span>
+                <span>Dataset Analytics</span>
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="model"
+            >
+                <span class="nav-icon">◇</span>
+                <span>Model Analytics</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-status">
+
+            <div class="status-dot"></div>
+
+            <div>
+                <strong>System Online</strong>
+                <span>Analysis engine ready</span>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+            DRUGSENSE v1.0
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="eyebrow">
+                    PATIENT DRUG REVIEW INTELLIGENCE
+                </div>
+
+                <h1 id="pageTitle">
+                    REVIEW WORKSPACE
+                </h1>
+
+                <p id="pageDescription">
+                    Analyze patient drug reviews using NLP
+                    and ML classification.
+                </p>
+
+            </div>
+
+
+            <div class="engine-status">
+
+                <span class="engine-dot"></span>
+
+                <span>
+                    Analysis Engine Ready
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             WORKSPACE
+        ====================================================== -->
+
+        <section
+            id="section-workspace"
+            class="page-section active-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">
+                        ANALYSIS WORKSPACE
+                    </div>
+
+                    <h2>
+                        Patient Review Analysis
+                    </h2>
+
+                    <p>
+                        Enter a patient drug review.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="workspace-grid">
+
+                <div class="review-panel card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="card-label">
+                                PATIENT REVIEW
+                            </span>
+
+                            <h3>
+                                Review Input
+                            </h3>
+                        </div>
+
+                        <span class="input-badge">
+                            NLP READY
+                        </span>
+
+                    </div>
+
+
+                    <textarea
+                        id="reviewInput"
+                        maxlength="10000"
+                        placeholder="Example: I started taking Metformin for my diabetes. It helped my blood sugar but caused severe nausea and dizziness."
+                    ></textarea>
+
+
+                    <div class="input-footer">
+
+                        <span id="characterCount">
+                            0 / 10000
+                        </span>
+
+                        <button
+                            id="analyzeButton"
+                            class="primary-button"
+                        >
+                            <span class="button-icon">✦</span>
+                            Analyze Review
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="visual-panel card">
+
+                    <div class="orbital">
+
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                        <div class="orbit orbit-three"></div>
+
+                        <div class="orbital-core">
+                            <span>DS</span>
+                        </div>
+
+                    </div>
+
+                    <div class="visual-copy">
+
+                        <span class="card-label">
+                            AI ANALYSIS ENGINE
+                        </span>
+
+                        <h3>
+                            Linguistic Intelligence
+                        </h3>
+
+                        <p>
+                            23 NLP components analyze entities,
+                            relationships, sentiment, treatment
+                            response and temporal information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loadingState"
+                class="status-card loading-card hidden"
+            >
+
+                <div class="spinner"></div>
+
+                <div>
+                    <strong>
+                        Analyzing patient review...
+                    </strong>
+
+                    <span>
+                        Running NLP pipeline and ML classification.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorState"
+                class="status-card error-card hidden"
+            >
+
+                <div class="error-icon">
+                    !
+                </div>
+
+                <div>
+                    <strong id="errorTitle">
+                        Analysis failed
+                    </strong>
+
+                    <span id="errorMessage">
+                        Unable to analyze the review.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- QUICK RESULT -->
+
+            <div
+                id="workspaceResult"
+                class="workspace-result hidden"
+            >
+
+                <div class="result-mini-card">
+
+                    <span>DRUG</span>
+                    <strong id="workspaceDrugs">—</strong>
+
+                </div>
+
+                <div class="result-mini-card">
+
+                    <span>CONDITION</span>
+                    <strong id="workspaceConditions">—</strong>
+
+                </div>
+
+                <div class="result-mini-card">
+
+                    <span>SYMPTOMS</span>
+                    <strong id="workspaceSymptoms">—</strong>
+
+                </div>
+
+                <div class="result-mini-card prediction-mini">
+
+                    <span>PREDICTED CONDITION</span>
+                    <strong id="workspacePrediction">—</strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="safety-banner">
+
+                <span class="safety-icon">i</span>
+
+                <div>
+                    <strong>Academic analysis only</strong>
+                    <p>
+                        The predicted condition is a machine-learning
+                        classification result and is not a medical diagnosis.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             NLP ANALYSIS
+        ====================================================== -->
+
+        <section
+            id="section-nlp"
+            class="page-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">
+                        NLP ENGINE
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="entity-grid">
+
+                <div class="analysis-card">
+
+                    <span class="analysis-title">
+                        Drugs
+                    </span>
+
+                    <div
+                        id="nlpDrugs"
+                        class="tag-container"
+                    >
+                        <span class="empty-tag">
+                            None detected
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-card">
+
+                    <span class="analysis-title">
+                        Conditions
+                    </span>
+
+                    <div
+                        id="nlpConditions"
+                        class="tag-container"
+                    >
+                        <span class="empty-tag">
+                            None detected
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-card">
+
+                    <span class="analysis-title">
+                        Symptoms
+                    </span>
+
+                    <div
+                        id="nlpSymptoms"
+                        class="tag-container"
+                    >
+                        <span class="empty-tag">
+                            None detected
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-card">
+
+                    <span class="analysis-title">
+                        Side Effects
+                    </span>
+
+                    <div
+                        id="nlpSideEffects"
+                        class="tag-container"
+                    >
+                        <span class="empty-tag">
+                            None detected
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="signal-grid">
+
+                <div class="metric-card">
+
+                    <span class="analysis-title">
+                        Sentiment
+                    </span>
+
+                    <strong id="nlpSentiment">
+                        Neutral
+                    </strong>
+
+                    <span
+                        id="nlpSentimentScore"
+                        class="metric-subtext"
+                    >
+                        Score: 0
+                    </span>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <span class="analysis-title">
+                        Treatment Response
+                    </span>
+
+                    <strong id="nlpTreatment">
+                        No clear response
+                    </strong>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <span class="analysis-title">
+                        Severity
+                    </span>
+
+                    <strong id="nlpSeverity">
+                        Not detected
+                    </strong>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <span class="analysis-title">
+                        Uncertainty
+                    </span>
+
+                    <strong id="nlpUncertainty">
+                        Not detected
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="signals-panel card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="card-label">
+                            CLINICAL-LINGUISTIC SIGNALS
+                        </span>
+
+                        <h3>
+                            Extracted Signals
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <div class="signal-row">
+
+                    <div class="signal-pill">
+                        Negation:
+                        <strong id="signalNegation">0</strong>
+                    </div>
+
+                    <div class="signal-pill">
+                        Temporal:
+                        <strong id="signalTemporal">0</strong>
+                    </div>
+
+                    <div class="signal-pill">
+                        Causality:
+                        <strong id="signalCausality">0</strong>
+                    </div>
+
+                    <div class="signal-pill">
+                        Relations:
+                        <strong id="signalRelations">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-grid">
+
+                <div class="detail-card card">
+
+                    <div class="card-header">
+                        <div>
+                            <span class="card-label">
+                                MEDICATION DETAILS
+                            </span>
+
+                            <h3>
+                                Dosage / Frequency / Duration
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="detail-columns">
+
+                        <div>
+                            <span>Dosage</span>
+                            <div id="nlpDosages">
+                                None detected
+                            </div>
+                        </div>
+
+                        <div>
+                            <span>Frequency</span>
+                            <div id="nlpFrequencies">
+                                None detected
+                            </div>
+                        </div>
+
+                        <div>
+                            <span>Duration</span>
+                            <div id="nlpDurations">
+                                None detected
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-card card">
+
+                    <div class="card-header">
+                        <div>
+                            <span class="card-label">
+                                RELATIONS
+                            </span>
+
+                            <h3>
+                                Drug Relationships
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div
+                        id="nlpRelations"
+                        class="relation-list"
+                    >
+                        <span class="empty-tag">
+                            No relations detected
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-card card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="card-label">
+                            TEMPORAL ANALYSIS
+                        </span>
+
+                        <h3>
+                            Treatment Timeline
+                        </h3>
+                    </div>
+
+                </div>
+
+                <div
+                    id="nlpTimeline"
+                    class="timeline"
+                >
+                    <span class="empty-tag">
+                        No timeline events detected
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PREDICTION
+        ====================================================== -->
+
+        <section
+            id="section-prediction"
+            class="page-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">
+                        MACHINE LEARNING
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="predictionEmpty"
+                class="empty-analysis card"
+            >
+                <div class="empty-icon">◎</div>
+
+                <h3>
+                    No prediction yet
+                </h3>
+
+                <p>
+                    Analyze a patient review from the Workspace
+                    to generate a prediction.
+                </p>
+            </div>
+
+
+            <div
+                id="predictionResults"
+                class="hidden"
+            >
+
+                <div class="prediction-hero card">
+
+                    <div>
+
+                        <span class="card-label">
+                            PREDICTED CONDITION
+                        </span>
+
+                        <h2 id="predictedCondition">
+                            —
+                        </h2>
+
+                        <p>
+                            Dataset classification result —
+                            not a medical diagnosis.
+                        </p>
+
+                    </div>
+
+
+                    <div class="prediction-score-box">
+
+                        <span>
+                            RELATIVE MODEL SCORE
+                        </span>
+
+                        <strong id="predictionScore">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="prediction-info-grid">
+
+                    <div class="metric-card">
+
+                        <span class="analysis-title">
+                            Model
+                        </span>
+
+                        <strong id="predictionModel">
+                            Linear Support Vector Machine
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric-card">
+
+                        <span class="analysis-title">
+                            Features
+                        </span>
+
+                        <strong>
+                            100,000
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric-card">
+
+                        <span class="analysis-title">
+                            Classes
+                        </span>
+
+                        <strong>
+                            791
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="top-predictions card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="card-label">
+                                MODEL OUTPUT
+                            </span>
+
+                            <h3>
+                                Top Predictions
+                            </h3>
+                        </div>
+
+                    </div>
+
+                    <div id="predictionBars">
+                        <span class="empty-tag">
+                            Top prediction details are not available.
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DATASET
+        ====================================================== -->
+
+        <section
+            id="section-dataset"
+            class="page-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">
+                        DATASET OVERVIEW
+                    </div>
+
+                    <p>
+                        Dataset and feature statistics used by the
+                        DrugSense classification pipeline.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>TRAINING REVIEWS</span>
+                    <strong id="datasetTraining">
+                        —
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>TEST REVIEWS</span>
+                    <strong id="datasetTest">
+                        —
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>TRAINING CONDITIONS</span>
+                    <strong id="datasetConditions">
+                        —
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>TF-IDF FEATURES</span>
+                    <strong id="datasetFeatures">
+                        —
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-card card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="card-label">
+                            DATASET SCALE
+                        </span>
+
+                        <h3>
+                            Dataset Distribution
+                        </h3>
+                    </div>
+
+                </div>
+
+                <div id="datasetBars"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MODEL
+        ====================================================== -->
+
+        <section
+            id="section-model"
+            class="page-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">
+                        MODEL ANALYTICS
+                    </div>
+
+                    <h2>
+                        Model Performance
+                    </h2>
+
+                    <p>
+                        Validation metrics and model comparison
+                        from the project experiments.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="model-summary card">
+
+                <div>
+
+                    <span class="card-label">
+                        ACTIVE CLASSIFIER
+                    </span>
+
+                    <h2 id="modelName">
+                        Linear Support Vector Machine
+                    </h2>
+
+                    <p>
+                        TF-IDF + LinearSVC
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>ACCURACY</span>
+                    <strong id="modelAccuracy">
+                        —
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>MACRO F1</span>
+                    <strong id="modelMacroF1">
+                        —
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>WEIGHTED F1</span>
+                    <strong id="modelWeightedF1">
+                        —
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
+
+</body>
+</html>
+
