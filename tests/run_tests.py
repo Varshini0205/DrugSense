@@ -5,27 +5,11 @@ import subprocess
 import sys
 
 
-TEST_PATHS = [
-    "nlp/tests",
-    "test_ml_predictor.py",
-    "test_ml_pipeline.py",
-    "test_ml_pipeline_errors.py",
-    "test_ml_model_failure.py",
-    "test_nlp_failure.py",
-    "test_nlp_partial_failure.py",
-    "test_nlp_component_errors.py",
-    "test_app.py",
-    "test_app_validation.py",
-    "test_app_errors.py",
-]
-
-
 def main():
     command = [
         sys.executable,
         "-m",
         "pytest",
-        *TEST_PATHS,
         "-q",
     ]
 
