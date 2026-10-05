@@ -1,5 +1,5 @@
-﻿from flask import Flask, render_template, request, jsonify
-from ml_pipeline import analyze_review_with_prediction
+from flask import Flask, render_template, request, jsonify
+from ml.ml_pipeline import analyze_review_with_prediction
 from stats import register_stats_route
 
 app = Flask(__name__)

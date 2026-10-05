@@ -1,8 +1,8 @@
-﻿# Connect NLP results with the trained model.
+# Connect NLP results with the trained model.
 # This keeps unexpected errors from breaking the application.
 
 from nlp.pipeline import analyze_review
-from ml_predictor import predict_condition
+from ml.ml_predictor import predict_condition
 
 
 def analyze_review_with_prediction(text):
