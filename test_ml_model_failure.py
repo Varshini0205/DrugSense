@@ -1,7 +1,7 @@
 ﻿# Test model failure handling.
 # This makes sure a model error is returned safely.
 
-import ml_pipeline
+import ml.ml_pipeline as ml_pipeline
 
 
 def test_model_exception(monkeypatch):

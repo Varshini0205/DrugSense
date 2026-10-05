@@ -1,7 +1,7 @@
 ﻿# Test the complete NLP and ML pipeline.
 # These checks make sure valid and invalid reviews are handled.
 
-from ml_pipeline import analyze_review_with_prediction
+from ml.ml_pipeline import analyze_review_with_prediction
 
 
 def test_prediction_details():

@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 
 
-PROJECT = Path(__file__).resolve().parent
+PROJECT = Path(__file__).resolve().parent.parent
 
 ARCHIVE_MODELS = PROJECT / "archive" / "models"
 ARCHIVE_ANALYSIS = PROJECT / "archive" / "analysis"

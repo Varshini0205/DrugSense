@@ -1,7 +1,7 @@
 ﻿# Test safe handling of pipeline errors.
 # These checks make sure bad input does not break the app.
 
-from ml_pipeline import analyze_review_with_prediction
+from ml.ml_pipeline import analyze_review_with_prediction
 
 
 def test_empty_review():

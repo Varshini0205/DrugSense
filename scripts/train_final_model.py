@@ -1,4 +1,4 @@
-﻿import os
+import os
 import time
 import joblib
 import pandas as pd
@@ -8,7 +8,7 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score, f1_score
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TRAIN_PATH = os.path.join(
     BASE_DIR,

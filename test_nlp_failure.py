@@ -1,7 +1,7 @@
 ﻿# Test NLP failure handling.
 # This makes sure an NLP error is handled safely.
 
-import ml_pipeline
+import ml.ml_pipeline as ml_pipeline
 
 
 def test_nlp_exception(monkeypatch):

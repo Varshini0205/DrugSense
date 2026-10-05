@@ -1,7 +1,7 @@
 ﻿# Test score handling and errors.
 # These checks make sure prediction stays safe.
 
-from ml_predictor import (
+from ml.ml_predictor import (
     predict_condition,
     normalize_scores,
 )
